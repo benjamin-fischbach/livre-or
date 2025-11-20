@@ -6,6 +6,13 @@ html{
   min-height: 100vh;
   min-width: 100vw;
 }
+
+.oops {
+  color: red;
+}
+.cool {
+  color: green;
+}
 body{
     margin:0%;
     padding: 0%;
@@ -119,4 +126,42 @@ footer:hover {
       transition: 0.25s ease-in-out;
       background: rgba(255,255,255,0.5);
       border-top: solid 1px #000;
+}
+
+#inscript-main{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #fff;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  text-justify: inter-word;
+  justify-content: center;
+  width: 30rem;
+
+  #inscript-card{
+    padding-left: 5% ;
+    padding-right: 5%;
+    padding-bottom: 10%;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.75);
+    border: solid 1px #fff;
+
+    input[type=text] {
+      border: solid 1px #fff;
+      width: 97%;
+    }
+
+    input[type=password] {
+      border: solid 1px #fff;
+      width: 97%;
+    }
+
+    input[type=submit] {
+      border: solid 1px #000;
+      border-radius: 5px;
+    }
+  }
 }
