@@ -44,9 +44,11 @@ if(!$mysqli) {
   <h3>Inscrivez-vous sur Gold Book !</h3>
     <form method="post" action="inscription.php">
     <label for="pseudo">Login :</label><br/>
-    <input type="text" name="pseudo"><br/>
+    <input type="text" name="pseudo"><br/><br/>
     <label for="password">Password :</label><br/>
-    <input type="password" name="mdp"><br/><br/>
+    <input type="password" name="mdp"><br/>
+    <label for="passcheck">Confirmer Password :</label><br/>
+    <input type="password" name="mdpcheck"><br/><br/>
     <input type="submit" value="S'inscrire">
   </form>
   <?php
@@ -63,6 +65,8 @@ if(isset($_POST['pseudo'],$_POST['mdp'])){//l'utilisateur à cliqué sur "S'insc
     echo "<p class=\"oops\">Veuillez choisir un mot de passe.</p>";
   } elseif(mysqli_num_rows(mysqli_query($mysqli,"SELECT * FROM utilisateurs WHERE login='".$_POST['pseudo']."'"))==1){//on vérifie que ce pseudo n'est pas déjà utilisé par un autre membre
     echo "<p class=\"oops\">Ce login est déjà utilisé.</p>";
+  } elseif($_POST['mdp'] != $_POST['mdpcheck']){//le champ "confirmer mdp" n'est pas identique a mdp
+    echo "<p class=\"oops\">Le mot de passe n'a pas pu être confirmé.</p>";
   } else {
     //toutes les vérifications sont faites, on passe à l'enregistrement dans la base de données:
     //Bien évidement il s'agit là d'un script simplifié au maximum, libre à vous de rajouter des conditions avant l'enregistrement comme la longueur minimum du mot de passe par exemple
