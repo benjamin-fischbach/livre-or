@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+  if(isset($_POST['disconnect'])){
+    unset ($_SESSION['pseudo']);
+  }
 
 ?>
 
@@ -10,7 +13,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/livreor.css">
-    <title>Livre d'Or - Inscription</title>
+    <title>Livre d'Or - Connexion</title>
 </head>
 <body>
 
@@ -19,12 +22,28 @@ session_start();
 <h1>♛ GOLD ✦ BOOK ♛</h1>
   <nav>
     <a href="index.php">Home</a>
+    <?php 
+    if(isset($_SESSION['pseudo'])){
+    ?>
     •	
     <a href="profil.php">Profil</a>
+    <?php 
+    }
+    ?>
     •	
     <a href="inscription.php">Inscription</a>
     •	
+    <a class="active" href="connexion.php">Connexion</a>
+    •	
     <a href="livre-or.php">Livre d'Or</a>
+    <?php 
+    if(isset($_SESSION['pseudo'])){
+    ?>
+    •	
+    <a href="commentaires.php">Commentaire</a>
+    <?php 
+    }
+    ?>
   </nav>
   <!-- <a class="active" href="connexion.php">Connexion</a>-->
   <!-- <a href="connexion.php">commentaire.php</a>-->
@@ -39,7 +58,17 @@ session_start();
     <input type="text" name="pseudo"><br/>
     <label for="password">Password :</label><br/>
     <input type="password" name="mdp"><br/><br/>
+        <?php 
+    if(isset($_SESSION['pseudo'])){
+    ?>
+    <input type="submit" name="disconnect" value="deconnexion">
+    <?php 
+    }else{
+    ?>
     <input type="submit" name="connexion" value="connexion">
+    <?php
+    }
+    ?>
   </form>
   <?php
   //si le bouton "Connexion" est cliqué
