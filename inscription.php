@@ -1,4 +1,5 @@
 <?php 
+session_start();
 // Connecte cette page à la base de donnée (ici "livreor" en local)
 $BDD = array();
 $BDD['host'] = "localhost";
@@ -10,6 +11,7 @@ if(!$mysqli) {
   echo "<p class=\"oops\">Connexion non établie.</p>";
   exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +29,28 @@ if(!$mysqli) {
 <h1>♛ GOLD ✦ BOOK ♛</h1>
   <nav>
     <a href="index.php">Home</a>
+    <?php 
+    if(isset($_SESSION['pseudo'])){
+    ?>
     •	
     <a href="profil.php">Profil</a>
+    <?php 
+    }
+    ?>
     •	
     <a class="active" href="inscription.php">Inscription</a>
     •	
+    <a  href="connexion.php">Connexion</a>
+    •	
     <a href="livre-or.php">Livre d'Or</a>
+        <?php 
+    if(isset($_SESSION['pseudo'])){
+    ?>
+    •	
+    <a href="commentaires.php">Commentaire</a>
+    <?php 
+    }
+    ?>
   </nav>
   <!-- connexion.php-->
   <!-- commentaire.php-->
@@ -73,9 +91,10 @@ if(isset($_POST['pseudo'],$_POST['mdp'])){//l'utilisateur à cliqué sur "S'insc
     if(!mysqli_query($mysqli,"INSERT INTO utilisateurs SET login='".$_POST['pseudo']."', password='".md5($_POST['mdp'])."'")){//on crypte le mot de passe avec la fonction propre à PHP: md5()
       echo "<p class=\"oops\">Une erreur s'est produite: </p>".mysqli_error($mysqli);//je conseille de ne pas afficher les erreurs aux visiteurs mais de l'enregistrer dans un fichier log
     } else {
-      echo "<p class=\"cool\">Vous êtes inscrit avec succès!</p>";
+      echo "<p class=\"cool\">Vous êtes inscrit avec succès!<br/></p>Redirection vers la page de connexion...";
       //on affiche plus le formulaire
       $AfficherFormulaire=0;
+      header("Refresh: 3; connexion.php");
     }
   }
 }
