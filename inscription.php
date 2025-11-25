@@ -47,13 +47,11 @@ if(!$mysqli) {
     if(isset($_SESSION['pseudo'])){
     ?>
     •	
-    <a href="commentaires.php">Commentaire</a>
+    <a href="commentaire.php">Commentaire</a>
     <?php 
     }
     ?>
   </nav>
-  <!-- connexion.php-->
-  <!-- commentaire.php-->
 </header>
 
 <article id="inscript-main">
@@ -79,6 +77,8 @@ if(isset($_POST['pseudo'],$_POST['mdp'])){//l'utilisateur à cliqué sur "S'insc
     echo "<p class=\"oops\">Le login est invalide (minuscules et chiffres uniquement).</p>";
   } elseif(strlen($_POST['pseudo'])>255){//le pseudo est trop long, il dépasse 255 caractères
     echo "<p class=\"oops\">Le login est trop long.</p>";
+  }  elseif(strlen($_POST['pseudo'])<3){//le pseudo est trop court, moins de 3 caractères
+    echo "<p class=\"oops\">Le login doit contenir au moins 3 caractères.</p>";
   } elseif(empty($_POST['mdp'])){//le champ mot de passe est vide
     echo "<p class=\"oops\">Veuillez choisir un mot de passe.</p>";
   } elseif(mysqli_num_rows(mysqli_query($mysqli,"SELECT * FROM utilisateurs WHERE login='".$_POST['pseudo']."'"))==1){//on vérifie que ce pseudo n'est pas déjà utilisé par un autre membre

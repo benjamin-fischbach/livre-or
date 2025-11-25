@@ -1,6 +1,23 @@
 <?php 
 session_start();
+
+// Connecte cette page à la base de donnée (ici "livreor" en local)
+$BDD = array();
+$BDD['host'] = "localhost";
+$BDD['user'] = "root";
+$BDD['pass'] = "";
+$BDD['db'] = "livreor";
+$mysqli = mysqli_connect($BDD['host'], $BDD['user'], $BDD['pass'], $BDD['db']);
+if(!$mysqli) {
+  echo "<p class=\"oops\">Connexion non établie.</p>";
+  exit;
+}
+
+if(!isset($_SESSION['pseudo'])){ //si 'pseudo' n'est pas set, redirige vers autre page
+    header("Location: inscription.php");
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +25,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/livreor.css">
-    <title>Livre d'Or - Main</title>
+    <title>Livre d'Or - Commentaire</title>
 </head>
 <body>
 
@@ -42,16 +59,20 @@ session_start();
   </nav>
 </header>
 
-<article id="maintext">
-<!-- <svg height="50" width="50">
-<image height="50" width="50" href='assets/img/book.png' >
-</svg> -->
-<p><b>Welcome</b>,<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...</p>
+<article id="livremain">
+<div id="livretext">
+<h3>Ajoutez votre message au livre d'or</h3>
+    <form method="post" action="livre-or.php">
+    <label for="commentaire">Votre message :</label><br/>
+    <textarea name="commentaire" rows="10" cols="57" required="required"><?php echo "Ecrivez ici..."; ?></textarea><br/>
+    <input type="submit" value="Envoyer">
+  </form>
+</div>
 </article>
     <footer>
         Ben Fischbach - CDPI La Plateforme, Marseille - 2025-2026
     </footer>
+
 </body>
 
 </html>
