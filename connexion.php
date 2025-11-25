@@ -40,13 +40,11 @@ session_start();
     if(isset($_SESSION['pseudo'])){
     ?>
     •	
-    <a href="commentaires.php">Commentaire</a>
+    <a href="commentaire.php">Commentaire</a>
     <?php 
     }
     ?>
   </nav>
-  <!-- <a class="active" href="connexion.php">Connexion</a>-->
-  <!-- <a href="connexion.php">commentaire.php</a>-->
 </header>
 
 <article id="inscript-main">
@@ -103,14 +101,20 @@ if(isset($_POST['connexion'])){
           //on ouvre la session avec $_SESSION:
           //la session peut être appelée différemment et son contenu aussi peut être autre chose que le pseudo
           $_SESSION['pseudo'] = $Pseudo;
-          echo "<p class=\"cool\">Vous êtes à présent connecté, ".$Pseudo."  !</p>";
+          header("Location: connexion.php");
         }
       }
     }
   }
 }
+
 ?>
 </form>
+<?php 
+if(isset($_SESSION['pseudo'])){
+  echo "<p class=\"cool\">Vous êtes connecté en tant que ".$_SESSION['pseudo']."  !</p>";
+}
+?>
 </div>
 </article>
     <footer>
