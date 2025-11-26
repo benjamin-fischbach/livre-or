@@ -26,7 +26,7 @@ if(!$mysqli) {
 
 <header>
 
-<h1>♛ GOLD ✦ BOOK ♛</h1>
+<h1>♛ GUEST ✦ BOOK ♛</h1>
   <nav>
     <a href="index.php">Home</a>
     <?php 
@@ -57,7 +57,7 @@ if(!$mysqli) {
 <article id="inscript-main">
 <div id="inscript-card">
     <br />
-  <h3>Inscrivez-vous sur Gold Book !</h3>
+  <h3>Inscrivez-vous sur Guest Book !</h3>
     <form method="post" action="inscription.php">
     <label for="pseudo">Login :</label><br/>
     <input type="text" name="pseudo"><br/><br/>
@@ -68,7 +68,6 @@ if(!$mysqli) {
     <input type="submit" value="S'inscrire">
   </form>
   <?php
-  $AfficherFormulaire=1;
 //traitement du formulaire:
 if(isset($_POST['pseudo'],$_POST['mdp'])){//l'utilisateur à cliqué sur "S'inscrire", on demande donc si les champs sont défini avec "isset"
   if(empty($_POST['pseudo'])){//le champ pseudo est vide, on arrête l'exécution du script et on affiche un message d'erreur
@@ -92,8 +91,6 @@ if(isset($_POST['pseudo'],$_POST['mdp'])){//l'utilisateur à cliqué sur "S'insc
       echo "<p class=\"oops\">Une erreur s'est produite: </p>".mysqli_error($mysqli);//je conseille de ne pas afficher les erreurs aux visiteurs mais de l'enregistrer dans un fichier log
     } else {
       echo "<p class=\"cool\">Vous êtes inscrit avec succès!<br/></p>Redirection vers la page de connexion...";
-      //on affiche plus le formulaire
-      $AfficherFormulaire=0;
       header("Refresh: 3; connexion.php");
     }
   }

@@ -19,7 +19,7 @@ session_start();
 
 <header>
 
-<h1>♛ GOLD ✦ BOOK ♛</h1>
+<h1>♛ GUEST ✦ BOOK ♛</h1>
   <nav>
     <a href="index.php">Home</a>
     <?php 
@@ -50,7 +50,7 @@ session_start();
 <article id="inscript-main">
 <div id="inscript-card">
     <br />
-  <h3>Connectez-vous a votre profil Gold Book</h3>
+  <h3>Connectez-vous a votre profil Guest Book</h3>
     <form method="post" action="connexion.php">
     <label for="pseudo">Login :</label><br/>
     <input type="text" name="pseudo"><br/>
@@ -113,6 +113,8 @@ if(isset($_POST['connexion'])){
 <?php 
 if(isset($_SESSION['pseudo'])){
   echo "<p class=\"cool\">Vous êtes connecté en tant que ".$_SESSION['pseudo']."  !</p>";
+}else{
+  echo "<p>Vous n'êtes actuellement pas connecté.</p>";
 }
 ?>
 </div>
