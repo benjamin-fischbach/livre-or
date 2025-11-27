@@ -76,7 +76,7 @@ if(isset($_POST['connexion'])){
   if(empty($_POST['pseudo'])){
     echo "<p class=\"oops\">Le champ \"Login\" est vide.</p>";
   } else {
-    // on vérifie maintenant si le champ "Mot de passe" n'est pas vide"
+    // on vérifie si le champ "Mot de passe" n'est pas vide"
     if(empty($_POST['mdp'])){
       echo "<p class=\"oops\">Le champ \"Password\" est vide.</p>";
     } else {
