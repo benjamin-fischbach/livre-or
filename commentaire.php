@@ -72,7 +72,7 @@ if(!isset($_SESSION['pseudo'])){ //si 'pseudo' n'est pas set, redirige vers autr
   $date_message= date("d-m-y");
   $id_utilisateur =$_SESSION['pseudo'];
 //traitement du formulaire:
-if(isset($_POST['Envoyer'])){//l'utilisateur à cliqué sur "commentaire", on demande donc si le message est défini avec "isset"
+if(isset($_POST['Envoyer'])){//l'utilisateur à cliqué sur "Envoyer", on demande donc si le message est défini avec "isset"
   if(empty($_POST['commentaire'])){//le commentaire est vide, on arrête l'exécution du script et on affiche un message d'erreur
     echo "<p class=\"oops\">Un commentaire ne peut pas être vide.</p>";
   } elseif(strlen($_POST['commentaire'])>1000){//le commentaire est trop long, il dépasse 255 caractères
@@ -81,7 +81,7 @@ if(isset($_POST['Envoyer'])){//l'utilisateur à cliqué sur "commentaire", on de
     echo "<p class=\"oops\">Le commentaire doit contenir au moins 3 caractères.</p>";
   } else {
     $message= $_POST['commentaire'];
-    //toutes les vérifications sont faites, on passe à l'enregistrement dans la base de données:
+    //toutes les vérifications sont faites, enregistrement dans la base de données:
     if(!mysqli_query($mysqli,"INSERT INTO commentaires SET commentaire='".($message)."', id_utilisateur='".($id_utilisateur)."', date='".($date_message)."'")){
       echo "<p class=\"oops\">Une erreur s'est produite: </p>".mysqli_error($mysqli);
     } else {
