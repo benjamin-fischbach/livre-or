@@ -101,6 +101,7 @@ if(isset($_POST['connexion'])){
           //on ouvre la session avec $_SESSION:
           //la session peut être appelée différemment et son contenu aussi peut être autre chose que le pseudo
           $_SESSION['pseudo'] = $Pseudo;
+          $_SESSION['password'] = $MotDePasse;
           header("Location: connexion.php");
         }
       }

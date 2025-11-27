@@ -6,6 +6,8 @@ $BDD['host'] = "localhost";
 $BDD['user'] = "root";
 $BDD['pass'] = "";
 $BDD['db'] = "livreor";
+
+//Print_r ($_SESSION);
 $mysqli = mysqli_connect($BDD['host'], $BDD['user'], $BDD['pass'], $BDD['db']);
 if(!$mysqli) {
   echo "<p class=\"oops\">Connexion non établie.</p>";
@@ -64,13 +66,13 @@ if(!isset($_SESSION['pseudo'])){ //si 'pseudo' n'est pas set, redirige vers autr
     <form method="post" action="commentaire.php">
     <label for="commentaire">Votre message :</label><br/>
     <textarea name="commentaire" rows="10" cols="57" required="required"  placeholder="Ecrivez ici..."></textarea><br/>
-    <input type="submit" value="commentaire" name="commentaire">
+    <input type="submit" value="Envoyer" name="Envoyer">
   </form>
   <?php
   $date_message= date("d-m-y");
   $id_utilisateur =$_SESSION['pseudo'];
 //traitement du formulaire:
-if(isset($_POST['commentaire'])){//l'utilisateur à cliqué sur "commentaire", on demande donc si le message est défini avec "isset"
+if(isset($_POST['Envoyer'])){//l'utilisateur à cliqué sur "commentaire", on demande donc si le message est défini avec "isset"
   if(empty($_POST['commentaire'])){//le commentaire est vide, on arrête l'exécution du script et on affiche un message d'erreur
     echo "<p class=\"oops\">Un commentaire ne peut pas être vide.</p>";
   } elseif(strlen($_POST['commentaire'])>1000){//le commentaire est trop long, il dépasse 255 caractères
@@ -88,7 +90,7 @@ if(isset($_POST['commentaire'])){//l'utilisateur à cliqué sur "commentaire", o
     }
   }
 }else {
-  $_POST['commentaire'] = NULL;
+  unset($_POST['commentaire']);
   echo "";
 }
   ?>

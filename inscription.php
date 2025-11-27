@@ -11,7 +11,7 @@ if(!$mysqli) {
   echo "<p class=\"oops\">Connexion non établie.</p>";
   exit;
 }
-
+//Print_r ($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ if(isset($_POST['pseudo'],$_POST['mdp'])){//l'utilisateur à cliqué sur "S'insc
     //toutes les vérifications sont faites, on passe à l'enregistrement dans la base de données:
     //Bien évidement il s'agit là d'un script simplifié au maximum, libre à vous de rajouter des conditions avant l'enregistrement comme la longueur minimum du mot de passe par exemple
     if(!mysqli_query($mysqli,"INSERT INTO utilisateurs SET login='".$_POST['pseudo']."', password='".md5($_POST['mdp'])."'")){//on crypte le mot de passe avec la fonction propre à PHP: md5()
-      echo "<p class=\"oops\">Une erreur s'est produite: </p>".mysqli_error($mysqli);//je conseille de ne pas afficher les erreurs aux visiteurs mais de l'enregistrer dans un fichier log
+      echo "<p class=\"oops\">Une erreur s'est produite: </p>".mysqli_error($mysqli);
     } else {
       echo "<p class=\"cool\">Vous êtes inscrit avec succès!<br/></p>Redirection vers la page de connexion...";
       header("Refresh: 3; connexion.php");
